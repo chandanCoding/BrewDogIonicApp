@@ -2,7 +2,7 @@
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
       <ion-header>
-        <ion-toolbar>
+        <ion-toolbar color="warning">
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
@@ -15,7 +15,13 @@
                 {{p.title}}
               </ion-label>
             </ion-item>
+            <ion-item style="padding-left: 0;" (click)="showAbout()" lines="none">
+              <ion-ripple-effect></ion-ripple-effect>
+              <ion-icon slot="start" name="information-circle" item-start></ion-icon>
+              <ion-label>About</ion-label>
+            </ion-item>
           </ion-menu-toggle>
+
         </ion-list>
       </ion-content>
     </ion-menu>

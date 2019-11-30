@@ -1,27 +1,73 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="warning">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>
-      List
+      {{receivedParams?.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<input type="text" value="" id="hiddenClipboard" style="display: none;">
+<ion-content fullscreen class="product-detail" style="background-color: #f4f4f4;">
+  <ion-slides pager="true" style="height: 250px">
+    <ion-slide>
+      <img [src]="receivedParams.image_url">
+    </ion-slide>
+  </ion-slides>
+  <ion-card>
+    <ion-card-content>
+      <h2>{{receivedParams?.tagline}}</h2>
+      <small>First Brewed</small>
+      <p class="price"> {{receivedParams?.first_brewed}} </p>
+      <ion-badge>{{receivedParams?.abv}}
+        <ion-icon name="beer"></ion-icon>
+      </ion-badge>
+      <br>
+      <ion-text style="font-size: 12px;color: #717171;">{{getName(receivedParams?.contributed_by)}}</ion-text>
+    </ion-card-content>
+    <ion-row>
+      <ion-col width-50 (click)="copyPathToClipboard()">
+        <ion-icon name="share-alt"></ion-icon><span> Share</span>
+      </ion-col>
+      <ion-col width-50 (click)="toggleWishlist(receivedParams.id)">
+        <ion-icon [color]="_color" [name]="isWishlisted"></ion-icon>
+        <span> Wishlist</span>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-row class="detail">
+        Details
+      </ion-row>
+      <ul>
+        {{receivedParams?.description}}
+      </ul>
+      <h2><b>Food Pairings</b></h2>
 
-<ion-content>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-icon [name]="item.icon" slot="start"></ion-icon>
-      {{item.title}}
-      <div class="item-note" slot="end">
-        {{item.note}}
+      <div *ngFor="let fooditem of receivedParams?.food_pairing">
+        <li>{{fooditem}}</li>
       </div>
-    </ion-item>
-  </ion-list>
-  <!--
-    <div *ngIf="selectedItem" padding>
-      You navigated here from <b>{{selectedItem.title }}</b>
-    </div>
-  -->
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-row class="detail">
+        Stats & Tips
+      </ion-row>
+      <ion-row>
+        <ion-col width-50>
+          <span style=" font-size: xx-large; ">{{receivedParams?.volume.value}} {{receivedParams?.volume.unit}}
+            <ion-icon name="water"></ion-icon>
+          </span> <br>
+          <span style="font-size: 12px;color: #717171;">{{receivedParams?.ph}} pH</span>
+          <span style="font-size: 12px;color: #717171;">, {{receivedParams?.attenuation_level}} Att.</span>
+        </ion-col>
+        <ion-col class="ion-align-self-center">
+          <ion-text>"{{receivedParams?.brewers_tips}}"</ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
