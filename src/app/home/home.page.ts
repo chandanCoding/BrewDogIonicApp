@@ -27,7 +27,7 @@ export class HomePage {
     private _navController: NavController,
     private _dataCarrier: DataCarrierService,
     private _toolkit: ToolkitService,
-    private _wishlist: WishlistHandlerService,
+    public _wishlist: WishlistHandlerService,
     private alertController: AlertController
   ) {}
   ngOnInit() {

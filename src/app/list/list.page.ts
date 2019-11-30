@@ -9,7 +9,7 @@ import { WishlistHandlerService } from "../services/wishlist-handler.service";
   styleUrls: ["list.page.scss"]
 })
 export class ListPage implements OnInit {
-  private receivedParams: any;
+  public receivedParams: any;
   isWishlisted: string = "heart-empty";
   _color: string = "";
   constructor(
