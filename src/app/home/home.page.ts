@@ -90,6 +90,7 @@ export class HomePage {
       this.processRequest(0, this.myInput);
     else {
       this.infiniteScroll.disabled = false;
+      this.pageCount = 1;
       this.processRequest();
     }
   }
